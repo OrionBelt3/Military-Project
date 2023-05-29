@@ -249,6 +249,9 @@ class Window1(QMainWindow):
         self.ui.actionbtnInfo.triggered.connect(self.help)
         self.ui.actionViewTask.triggered.connect(self.openTextTask)
         self.ui.actionHelp.triggered.connect(self.solveTask)
+        self.ui.actionbtnZoomIn.triggered.connect(self.zoomIn)
+        self.ui.actionbtnZoomOut.triggered.connect(self.zoomOut)
+        self.ui.actionbtnZoom100.triggered.connect(self.zoomInNormal)
 
     def openTextTask(self):
         dialogTask = QDialog()
@@ -267,7 +270,7 @@ class Window1(QMainWindow):
         if self.table.isHidden():
             self.table.show()
         else:
-            self.table.hide()
+            self.table.hide(),
     
     def zoomIn(self):
         self.DisplayObj.zoomIn()
@@ -275,6 +278,10 @@ class Window1(QMainWindow):
 
     def zoomOut(self):
         self.DisplayObj.zoomOut()
+        self.DisplayObj.update()
+
+    def zoomInNormal(self):
+        self.DisplayObj.zoomInNormal()
         self.DisplayObj.update()
 
 
@@ -803,6 +810,8 @@ class Window3(QMainWindow):
         self.ui.actionViewTask.triggered.connect(self.openTextTask)
         self.ui.actionHelp.triggered.connect(self.solveTask)
         self.ui.actionbtnInfo.triggered.connect(self.help)
+        self.ui.actionbtnZoomIn.triggered.connect(self.zoomIn)
+        self.ui.actionbtnZoomOut.triggered.connect(self.zoomOut)
 
     def openTextTask(self):
         dialogTask = QDialog()
@@ -891,11 +900,11 @@ class Window3(QMainWindow):
             warning = warning.exec()
 
     def help(self):
-        # if self.table.isHidden():
-        #     self.table.show()
-        # else:
-        #     self.table.hide()
-        self.zoomIn()
+        if self.table.isHidden():
+            self.table.show()
+        else:
+            self.table.hide()
+        # self.zoomIn()
 
     def zoomIn(self):
         self.DisplayObj.zoomIn()
@@ -2086,6 +2095,7 @@ class WindowMenu(QMainWindow):
         self.ui.actionEditTaskVariant.setEnabled(False)
         self.ui.actionPrint.setEnabled(False)
         self.ui.actionPreviewReport.setEnabled(False)
+        self.ui.actioDecryptRep.setEnabled(False)
         self.ui.btnTask1.setEnabled(True)
         self.ui.btnTask2.setEnabled(
             Properties.getVerificationPassedTasks(1))
@@ -2339,6 +2349,7 @@ class WindowMenu(QMainWindow):
             self.ui.btnTask6.setEnabled(True)
             self.ui.actionPrint.setEnabled(True)
             self.ui.actionPreviewReport.setEnabled(True)
+            self.ui.actioDecryptRep.setEnabled(True)
             self.ui.menuBar.setStyleSheet(
                 "QMenuBar{background:rgba(255,0,0,255)}")
             self.ui.statusbar.setStyleSheet(
@@ -2350,6 +2361,7 @@ class WindowMenu(QMainWindow):
             self.ui.actionEditTaskVariant.setEnabled(False)
             self.ui.actionPrint.setEnabled(False)
             self.ui.actionPreviewReport.setEnabled(False)
+            self.ui.actioDecryptRep.setEnabled(False)
             self.ui.btnTask1.setEnabled(True)
             self.ui.btnTask2.setEnabled(
                 Properties.getVerificationPassedTasks(1))
